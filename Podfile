@@ -10,4 +10,5 @@ target ‘DT’ do
     pod 'MJExtension'
     pod 'SVPullToRefresh'
     pod 'JSONModel’
+    pod 'YYModel'
 end

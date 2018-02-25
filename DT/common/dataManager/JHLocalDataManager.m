@@ -63,7 +63,7 @@
 }
 
 /** string */
--(void)savaSting:(NSString *)string withDataType:(JHLocalDataType)type WithKey:(NSString *)key withisSucess:(void (^)(BOOL))complementBack{
+-(void)saveString:(NSString *)string withDataType:(JHLocalDataType)type WithKey:(NSString *)key withisSucess:(void (^)(BOOL))complementBack{
     if (string.length == 0 || !type || !key) {
         return;
     }
@@ -73,7 +73,7 @@
     }];
 }
 
--(NSString *)getStingWithDataType:(JHLocalDataType)type andKey:(NSString *)key{
+-(NSString *)getStringWithDataType:(JHLocalDataType)type andKey:(NSString *)key{
     if (!type || !key) {
         return nil;
     }
@@ -122,8 +122,44 @@
     return dic;
 }
 
+/** image */
+-(void)saveImage:(UIImage *)image withDataType:(JHLocalDataType)type WithKey:(NSString *)key withisSucess:(void (^)(BOOL))complementBack{
+    if (!image || !type || !key) {
+        return;
+    }
+    NSData *data = UIImagePNGRepresentation(image);
+    [self saveData:data withDataType:JHLocalDataDocuments WithKey:key withisSucess:^(BOOL isSucess) {
+        complementBack(isSucess);
+    }];
+}
+-(UIImage *)getImageWithDataType:(JHLocalDataType)type andKey:(NSString *)key{
+    if (!type || !key) {
+        return nil;
+    }
+    NSData *data = [self getDataWithDataType:type andKey:key];
+    UIImage *image = [UIImage imageWithData:data];
+        return image;
+}
 /** object */
+-(void)saveObject:(id)object withDataType:(JHLocalDataType)type WithKey:(NSString *)key withisSucess:(void (^)(BOOL))complementBack{
+    if (!object || !type || !key) {
+        return;
+    }
+    NSString *path = [self getDefaultPathWithDataType:type withKey:key];
+    BOOL isSucess;
+    isSucess = [NSKeyedArchiver archiveRootObject:object toFile:path];
+    complementBack(isSucess);
+}
 
+- (id)getObjectWithDataType:(JHLocalDataType)type andKey:(NSString *)key{
+    if (!type || !type) {
+        return nil;
+    }
+    NSString *path = [self getDefaultPathWithDataType:type withKey:key];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    id object = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    return object;
+}
 
 #pragma mark - pathManager
 - (NSString *)getDefaultPathWithDataType:(JHLocalDataType)type withKey:(NSString *)key{

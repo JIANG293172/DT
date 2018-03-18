@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TestViewController.h"
+#import "TestThreadViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -18,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self. window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    TestViewController *controller = [TestViewController new];
+    TestThreadViewController *controller = [TestThreadViewController new];
     self.window.rootViewController = controller;
     [self.window makeKeyAndVisible];
     return YES;

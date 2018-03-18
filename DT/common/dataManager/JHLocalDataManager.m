@@ -22,12 +22,12 @@
 @implementation JHLocalDataManager
 
 +(instancetype)shareJHLocalDataManager{
-    static JHLocalDataManager *simpleInstance;
+    static JHLocalDataManager *singleInstance;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        simpleInstance = [[self alloc] init];
+        singleInstance = [[self alloc] init];
     });
-    return simpleInstance;
+    return singleInstance;
 }
 
 -(instancetype)init{

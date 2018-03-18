@@ -9,7 +9,10 @@
 #import "TestViewController.h"
 #import "TextModel.h"
 #import "JHLocalDataManager.h"
+#import "LevelDB.h"
+#import "Masonry.h"
 
+typedef void(^MyCallBack)();
 @interface TestViewController ()
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UIImageView  *iv;
@@ -19,9 +22,85 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self makeanchorPoint];
+    // Do any additional setup after loading the view.
+}
+
+- (void)makeanchorPoint{
+    
+    UIImageView *iv = [[UIImageView alloc] init];
+    iv.backgroundColor = [UIColor clearColor];
+    
+    iv.image = [UIImage imageNamed:@"tao3"];
+    
+//    [iv mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.centerY.offset = 0;
+//        make.width.height.offset = 200;
+//    }];
+    
+    
+    
+//    iv.contentMode = UIViewContentModeScaleAspectFit;
+//    iv.layer.contentsRect = CGRectMake(0, 0, 0.5, 0.5);
+//    iv.layer.anchorPoint = CGPointMake(0.0f, 0.0f);
+//    iv.layer.masksToBounds = YES;
+    
+//    iv.clipsToBounds = YES;
+    
+    CALayer *maskLayer = [CALayer layer];
+    maskLayer.frame = CGRectMake(0, 0, 200, 200);
+    UIImage *maskImage = [UIImage imageNamed:@"tao4"];
+    maskLayer.contents = (__bridge id)maskImage.CGImage;
+    
+    iv.layer.mask = maskLayer;
+
+    [self getDataWithCallBack:^{
+        
+    }];
+    
+    
+    void (^MyCallBack)() = ^{
+        NSLog(@"00");
+    };
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            MyCallBack();
+        });
+    });
+    
+    int a = 1;
+    
+    void (^myBlock)();
+    if (a) {
+        myBlock = ^ {
+            NSLog(@"33");
+        };
+    }else{
+        myBlock = ^ {
+            NSLog(@"44");
+        };
+    }
+    myBlock();
+    
+    NSArray *array;
+
+    
+}
+
+
+- (void)getDataWithCallBack:(MyCallBack)callback{
+    
+}
+
+
+
+/** save datas */
+- (void)makeLocalDataManageDatas{
     self.dataArray = [NSMutableArray array];
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 1000000; i++) {
         TextModel *model = [[TextModel alloc] init];
         [self.dataArray addObject:model];
     }
@@ -45,7 +124,7 @@
     NSArray *array = @[@"array1", @"array2"];
     [[JHLocalDataManager shareJHLocalDataManager] saveArray:array withDataType:JHLocalDataDocuments WithKey:@"array" withisSucess:^(BOOL isSucess) {
         NSLog(@"isSucess %d", isSucess);
-
+        
     }];
     
     /** dictionary */
@@ -64,7 +143,12 @@
     [[JHLocalDataManager shareJHLocalDataManager] saveObject:self.dataArray withDataType:JHLocalDataDocuments WithKey:@"data" withisSucess:^(BOOL isSucess) {
         NSLog(@"isSucess %d", isSucess);
     }];
-    // Do any additional setup after loading the view.
+    
+    NSString *stringlb = @"levelDB";
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    LevelDB *db = [LevelDB levelDBWithPath:path error:nil];
+    [db setString:stringlb forKey:@"leveldb"];
+    [db setArray:_dataArray forKey:@"arraydb"];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -84,9 +168,26 @@
     UIImage *image = [[JHLocalDataManager shareJHLocalDataManager] getImageWithDataType:JHLocalDataDocuments andKey:@"image"];
     _iv.image = image;
     
-    
+    NSLog(@"1");
     id object = [[JHLocalDataManager shareJHLocalDataManager] getObjectWithDataType:JHLocalDataDocuments andKey:@"data"];
-    NSLog(@"%@", object);
+    NSLog(@"2");
+
+//    NSLog(@"%@", object);
+    
+    /** leveldb */
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+
+    LevelDB *db = [LevelDB levelDBWithPath:path error:nil];
+    NSString *stringdb = [db stringForKey:@"leveldb"];
+    NSLog(@"%@", stringdb);
+    
+    NSLog(@"111111");
+
+    NSArray *arraydb = [db arrayForKey:@"arraydb"];
+    NSLog(@"222222");
+
+//    NSLog(@"arraydb %@", arraydb);
+    
 }
 
 

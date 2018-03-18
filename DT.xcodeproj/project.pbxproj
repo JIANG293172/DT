@@ -9,9 +9,13 @@
 /* Begin PBXBuildFile section */
 		336D5FA881B335AB448E1E39 /* libPods-DT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEABAF8ADADB44E191F415A /* libPods-DT.a */; };
 		502D0D042029E40A00DA66BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 502D0D032029E40A00DA66BC /* AppDelegate.m */; };
+		50868B63205C062600C2F881 /* TextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50868B5E205C062600C2F881 /* TextModel.m */; };
+		50868B64205C062600C2F881 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50868B62205C062600C2F881 /* TestViewController.m */; };
+		50868B6B205C06DE00C2F881 /* TestThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50868B6A205C06DE00C2F881 /* TestThreadViewController.m */; };
 		5097342D204268CC00631D53 /* JHLocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5097342C204268CC00631D53 /* JHLocalDataManager.m */; };
-		50973434204287A300631D53 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50973433204287A300631D53 /* TestViewController.m */; };
-		50973437204287B600631D53 /* TextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50973436204287B600631D53 /* TextModel.m */; };
+		50B9ADBF2042F46800DD7DE4 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B9ADBE2042F46800DD7DE4 /* libleveldb.a */; };
+		50B9ADC22042F48700DD7DE4 /* LevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50B9ADC12042F48700DD7DE4 /* LevelDB.mm */; };
+		50B9ADD62042F96400DD7DE4 /* libmemenv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B9ADD52042F96400DD7DE4 /* libmemenv.a */; };
 		50C15DE820120EB600B36882 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C15DE720120EB600B36882 /* main.m */; };
 		50C15DF320120EB600B36882 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C15DF220120EB600B36882 /* Assets.xcassets */; };
 		50C15DF620120EB600B36882 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C15DF420120EB600B36882 /* LaunchScreen.storyboard */; };
@@ -21,12 +25,33 @@
 		4597C3E796365A9AB2000F49 /* Pods-DT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DT/Pods-DT.debug.xcconfig"; sourceTree = "<group>"; };
 		502D0D022029E40A00DA66BC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		502D0D032029E40A00DA66BC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		50868B5D205C062600C2F881 /* TextModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextModel.h; sourceTree = "<group>"; };
+		50868B5E205C062600C2F881 /* TextModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextModel.m; sourceTree = "<group>"; };
+		50868B61205C062600C2F881 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		50868B62205C062600C2F881 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		50868B69205C06DE00C2F881 /* TestThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestThreadViewController.h; sourceTree = "<group>"; };
+		50868B6A205C06DE00C2F881 /* TestThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestThreadViewController.m; sourceTree = "<group>"; };
 		5097342B204268CC00631D53 /* JHLocalDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHLocalDataManager.h; sourceTree = "<group>"; };
 		5097342C204268CC00631D53 /* JHLocalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHLocalDataManager.m; sourceTree = "<group>"; };
-		50973432204287A300631D53 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		50973433204287A300631D53 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		50973435204287B600631D53 /* TextModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextModel.h; sourceTree = "<group>"; };
-		50973436204287B600631D53 /* TextModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextModel.m; sourceTree = "<group>"; };
+		50B9ADBE2042F46800DD7DE4 /* libleveldb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libleveldb.a; sourceTree = "<group>"; };
+		50B9ADC02042F48700DD7DE4 /* LevelDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelDB.h; sourceTree = "<group>"; };
+		50B9ADC12042F48700DD7DE4 /* LevelDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelDB.mm; sourceTree = "<group>"; };
+		50B9ADC62042F62A00DD7DE4 /* c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c.h; sourceTree = "<group>"; };
+		50B9ADC72042F62A00DD7DE4 /* cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cache.h; sourceTree = "<group>"; };
+		50B9ADC82042F62A00DD7DE4 /* comparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comparator.h; sourceTree = "<group>"; };
+		50B9ADC92042F62A00DD7DE4 /* db.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = db.h; sourceTree = "<group>"; };
+		50B9ADCA2042F62A00DD7DE4 /* dumpfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dumpfile.h; sourceTree = "<group>"; };
+		50B9ADCB2042F62A00DD7DE4 /* env.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = env.h; sourceTree = "<group>"; };
+		50B9ADCC2042F62A00DD7DE4 /* export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = export.h; sourceTree = "<group>"; };
+		50B9ADCD2042F62A00DD7DE4 /* filter_policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filter_policy.h; sourceTree = "<group>"; };
+		50B9ADCE2042F62A00DD7DE4 /* iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iterator.h; sourceTree = "<group>"; };
+		50B9ADCF2042F62A00DD7DE4 /* options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = options.h; sourceTree = "<group>"; };
+		50B9ADD02042F62A00DD7DE4 /* slice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slice.h; sourceTree = "<group>"; };
+		50B9ADD12042F62A00DD7DE4 /* status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = status.h; sourceTree = "<group>"; };
+		50B9ADD22042F62A00DD7DE4 /* table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table.h; sourceTree = "<group>"; };
+		50B9ADD32042F62A00DD7DE4 /* table_builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table_builder.h; sourceTree = "<group>"; };
+		50B9ADD42042F62A00DD7DE4 /* write_batch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = write_batch.h; sourceTree = "<group>"; };
+		50B9ADD52042F96400DD7DE4 /* libmemenv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmemenv.a; sourceTree = "<group>"; };
 		50C15DE320120EB600B36882 /* DT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C15DE720120EB600B36882 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		50C15DF220120EB600B36882 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
@@ -41,7 +66,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B9ADBF2042F46800DD7DE4 /* libleveldb.a in Frameworks */,
 				336D5FA881B335AB448E1E39 /* libPods-DT.a in Frameworks */,
+				50B9ADD62042F96400DD7DE4 /* libmemenv.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +97,7 @@
 		502D0D052029E41100DA66BC /* thirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				50B9ADAD2042F46800DD7DE4 /* leveldb */,
 			);
 			path = thirdPart;
 			sourceTree = "<group>";
@@ -91,11 +119,81 @@
 			path = source;
 			sourceTree = "<group>";
 		};
+		50868B5B205C062600C2F881 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				50868B5C205C062600C2F881 /* Model */,
+				50868B5F205C062600C2F881 /* View */,
+				50868B60205C062600C2F881 /* ViewController */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		50868B5C205C062600C2F881 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				50868B5D205C062600C2F881 /* TextModel.h */,
+				50868B5E205C062600C2F881 /* TextModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		50868B5F205C062600C2F881 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		50868B60205C062600C2F881 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				50868B61205C062600C2F881 /* TestViewController.h */,
+				50868B62205C062600C2F881 /* TestViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		50868B65205C065E00C2F881 /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				50868B66205C065E00C2F881 /* Model */,
+				50868B67205C065E00C2F881 /* View */,
+				50868B68205C065E00C2F881 /* ViewController */,
+			);
+			path = Thread;
+			sourceTree = "<group>";
+		};
+		50868B66205C065E00C2F881 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		50868B67205C065E00C2F881 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		50868B68205C065E00C2F881 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				50868B69205C06DE00C2F881 /* TestThreadViewController.h */,
+				50868B6A205C06DE00C2F881 /* TestThreadViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		5097342A204268AB00631D53 /* dataManager */ = {
 			isa = PBXGroup;
 			children = (
 				5097342B204268CC00631D53 /* JHLocalDataManager.h */,
 				5097342C204268CC00631D53 /* JHLocalDataManager.m */,
+				50B9ADC02042F48700DD7DE4 /* LevelDB.h */,
+				50B9ADC12042F48700DD7DE4 /* LevelDB.mm */,
 			);
 			path = dataManager;
 			sourceTree = "<group>";
@@ -103,36 +201,42 @@
 		5097342E2042876600631D53 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				5097342F2042877B00631D53 /* Model */,
-				509734302042877B00631D53 /* View */,
-				509734312042877B00631D53 /* ViewController */,
+				50868B65205C065E00C2F881 /* Thread */,
+				50868B5B205C062600C2F881 /* Base */,
 			);
 			path = test;
 			sourceTree = "<group>";
 		};
-		5097342F2042877B00631D53 /* Model */ = {
+		50B9ADAD2042F46800DD7DE4 /* leveldb */ = {
 			isa = PBXGroup;
 			children = (
-				50973435204287B600631D53 /* TextModel.h */,
-				50973436204287B600631D53 /* TextModel.m */,
+				50B9ADC52042F62A00DD7DE4 /* leveldb */,
+				50B9ADBE2042F46800DD7DE4 /* libleveldb.a */,
+				50B9ADD52042F96400DD7DE4 /* libmemenv.a */,
 			);
-			path = Model;
+			path = leveldb;
 			sourceTree = "<group>";
 		};
-		509734302042877B00631D53 /* View */ = {
+		50B9ADC52042F62A00DD7DE4 /* leveldb */ = {
 			isa = PBXGroup;
 			children = (
+				50B9ADC62042F62A00DD7DE4 /* c.h */,
+				50B9ADC72042F62A00DD7DE4 /* cache.h */,
+				50B9ADC82042F62A00DD7DE4 /* comparator.h */,
+				50B9ADC92042F62A00DD7DE4 /* db.h */,
+				50B9ADCA2042F62A00DD7DE4 /* dumpfile.h */,
+				50B9ADCB2042F62A00DD7DE4 /* env.h */,
+				50B9ADCC2042F62A00DD7DE4 /* export.h */,
+				50B9ADCD2042F62A00DD7DE4 /* filter_policy.h */,
+				50B9ADCE2042F62A00DD7DE4 /* iterator.h */,
+				50B9ADCF2042F62A00DD7DE4 /* options.h */,
+				50B9ADD02042F62A00DD7DE4 /* slice.h */,
+				50B9ADD12042F62A00DD7DE4 /* status.h */,
+				50B9ADD22042F62A00DD7DE4 /* table.h */,
+				50B9ADD32042F62A00DD7DE4 /* table_builder.h */,
+				50B9ADD42042F62A00DD7DE4 /* write_batch.h */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		509734312042877B00631D53 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				50973432204287A300631D53 /* TestViewController.h */,
-				50973433204287A300631D53 /* TestViewController.m */,
-			);
-			path = ViewController;
+			path = leveldb;
 			sourceTree = "<group>";
 		};
 		50C15DDA20120EB600B36882 = {
@@ -304,10 +408,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50868B64205C062600C2F881 /* TestViewController.m in Sources */,
 				5097342D204268CC00631D53 /* JHLocalDataManager.m in Sources */,
+				50868B6B205C06DE00C2F881 /* TestThreadViewController.m in Sources */,
 				50C15DE820120EB600B36882 /* main.m in Sources */,
-				50973437204287B600631D53 /* TextModel.m in Sources */,
-				50973434204287A300631D53 /* TestViewController.m in Sources */,
+				50868B63205C062600C2F881 /* TextModel.m in Sources */,
+				50B9ADC22042F48700DD7DE4 /* LevelDB.mm in Sources */,
 				502D0D042029E40A00DA66BC /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +531,10 @@
 				DEVELOPMENT_TEAM = 5RQ3NFZ9B3;
 				INFOPLIST_FILE = DT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DT/thirdPart/leveldb",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.lqtec.www.DT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -438,6 +548,10 @@
 				DEVELOPMENT_TEAM = 5RQ3NFZ9B3;
 				INFOPLIST_FILE = DT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DT/thirdPart/leveldb",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.lqtec.www.DT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -111,7 +111,7 @@ typedef void(^MyCallBack)();
     _iv.image = image;
     
     NSLog(@"1");
-    id object = [[JHLocalDataManager shareJHLocalDataManager] getObjectWithDataType:JHLocalDataDocuments andKey:@"data"];
+//    id object = [[JHLocalDataManager shareJHLocalDataManager] getObjectWithDataType:JHLocalDataDocuments andKey:@"data"];
     NSLog(@"2");
 
 //    NSLog(@"%@", object);
@@ -125,7 +125,7 @@ typedef void(^MyCallBack)();
     
     NSLog(@"111111");
 
-    NSArray *arraydb = [db arrayForKey:@"arraydb"];
+//    NSArray *arraydb = [db arrayForKey:@"arraydb"];
     NSLog(@"222222");
 
 //    NSLog(@"arraydb %@", arraydb);

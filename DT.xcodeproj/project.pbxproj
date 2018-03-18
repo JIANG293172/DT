@@ -20,6 +20,7 @@
 		50C15DF320120EB600B36882 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C15DF220120EB600B36882 /* Assets.xcassets */; };
 		50C15DF620120EB600B36882 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C15DF420120EB600B36882 /* LaunchScreen.storyboard */; };
 		50F2A6AD205E448B00FCC571 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F2A6AC205E448B00FCC571 /* ListViewController.m */; };
+		50F2A6B2205E6B2B00FCC571 /* YSCOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F2A6B0205E6B2B00FCC571 /* YSCOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		50F2A6AB205E448B00FCC571 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		50F2A6AC205E448B00FCC571 /* ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		50F2A6AF205E459A00FCC571 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
+		50F2A6B0205E6B2B00FCC571 /* YSCOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSCOperation.m; sourceTree = "<group>"; };
+		50F2A6B1205E6B2B00FCC571 /* YSCOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSCOperation.h; sourceTree = "<group>"; };
 		6FEABAF8ADADB44E191F415A /* libPods-DT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61811CC0D798C9960345AC2 /* Pods-DT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DT.release.xcconfig"; path = "Pods/Target Support Files/Pods-DT/Pods-DT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +191,8 @@
 			children = (
 				50868B69205C06DE00C2F881 /* TestThreadViewController.h */,
 				50868B6A205C06DE00C2F881 /* TestThreadViewController.m */,
+				50F2A6B1205E6B2B00FCC571 /* YSCOperation.h */,
+				50F2A6B0205E6B2B00FCC571 /* YSCOperation.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F2A6B2205E6B2B00FCC571 /* YSCOperation.m in Sources */,
 				50868B64205C062600C2F881 /* TestViewController.m in Sources */,
 				5097342D204268CC00631D53 /* JHLocalDataManager.m in Sources */,
 				50F2A6AD205E448B00FCC571 /* ListViewController.m in Sources */,

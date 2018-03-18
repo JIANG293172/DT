@@ -29,63 +29,6 @@ typedef void(^MyCallBack)();
 }
 
 - (void)makeanchorPoint{
-    
-    UIImageView *iv = [[UIImageView alloc] init];
-    iv.backgroundColor = [UIColor clearColor];
-    
-    iv.image = [UIImage imageNamed:@"tao3"];
-    
-//    [iv mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.centerY.offset = 0;
-//        make.width.height.offset = 200;
-//    }];
-    
-    
-    
-//    iv.contentMode = UIViewContentModeScaleAspectFit;
-//    iv.layer.contentsRect = CGRectMake(0, 0, 0.5, 0.5);
-//    iv.layer.anchorPoint = CGPointMake(0.0f, 0.0f);
-//    iv.layer.masksToBounds = YES;
-    
-//    iv.clipsToBounds = YES;
-    
-    CALayer *maskLayer = [CALayer layer];
-    maskLayer.frame = CGRectMake(0, 0, 200, 200);
-    UIImage *maskImage = [UIImage imageNamed:@"tao4"];
-    maskLayer.contents = (__bridge id)maskImage.CGImage;
-    
-    iv.layer.mask = maskLayer;
-
-    [self getDataWithCallBack:^{
-        
-    }];
-    
-    
-    void (^MyCallBack)() = ^{
-        NSLog(@"00");
-    };
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            MyCallBack();
-        });
-    });
-    
-    int a = 1;
-    
-    void (^myBlock)();
-    if (a) {
-        myBlock = ^ {
-            NSLog(@"33");
-        };
-    }else{
-        myBlock = ^ {
-            NSLog(@"44");
-        };
-    }
-    myBlock();
-    
-    NSArray *array;
 
     
 }
@@ -94,7 +37,6 @@ typedef void(^MyCallBack)();
 - (void)getDataWithCallBack:(MyCallBack)callback{
     
 }
-
 
 
 /** save datas */

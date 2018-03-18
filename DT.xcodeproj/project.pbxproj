@@ -19,6 +19,7 @@
 		50C15DE820120EB600B36882 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C15DE720120EB600B36882 /* main.m */; };
 		50C15DF320120EB600B36882 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C15DF220120EB600B36882 /* Assets.xcassets */; };
 		50C15DF620120EB600B36882 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C15DF420120EB600B36882 /* LaunchScreen.storyboard */; };
+		50F2A6AD205E448B00FCC571 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F2A6AC205E448B00FCC571 /* ListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,9 @@
 		50C15DF220120EB600B36882 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		50C15DF520120EB600B36882 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50C15DF720120EB600B36882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		50F2A6AB205E448B00FCC571 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		50F2A6AC205E448B00FCC571 /* ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		50F2A6AF205E459A00FCC571 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		6FEABAF8ADADB44E191F415A /* libPods-DT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61811CC0D798C9960345AC2 /* Pods-DT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DT.release.xcconfig"; path = "Pods/Target Support Files/Pods-DT/Pods-DT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +109,7 @@
 		502D0D062029E41E00DA66BC /* common */ = {
 			isa = PBXGroup;
 			children = (
+				50F2A6AE205E452A00FCC571 /* Define */,
 				5097342A204268AB00631D53 /* dataManager */,
 			);
 			path = common;
@@ -119,14 +124,14 @@
 			path = source;
 			sourceTree = "<group>";
 		};
-		50868B5B205C062600C2F881 /* Base */ = {
+		50868B5B205C062600C2F881 /* BaseData */ = {
 			isa = PBXGroup;
 			children = (
 				50868B5C205C062600C2F881 /* Model */,
 				50868B5F205C062600C2F881 /* View */,
 				50868B60205C062600C2F881 /* ViewController */,
 			);
-			path = Base;
+			path = BaseData;
 			sourceTree = "<group>";
 		};
 		50868B5C205C062600C2F881 /* Model */ = {
@@ -201,8 +206,9 @@
 		5097342E2042876600631D53 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				50F2A6AA205E448000FCC571 /* List */,
 				50868B65205C065E00C2F881 /* Thread */,
-				50868B5B205C062600C2F881 /* Base */,
+				50868B5B205C062600C2F881 /* BaseData */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -276,6 +282,23 @@
 				50C15DE720120EB600B36882 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		50F2A6AA205E448000FCC571 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				50F2A6AB205E448B00FCC571 /* ListViewController.h */,
+				50F2A6AC205E448B00FCC571 /* ListViewController.m */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		50F2A6AE205E452A00FCC571 /* Define */ = {
+			isa = PBXGroup;
+			children = (
+				50F2A6AF205E459A00FCC571 /* PrefixHeader.h */,
+			);
+			path = Define;
 			sourceTree = "<group>";
 		};
 		ED82E4B390D83598391F3ED4 /* Frameworks */ = {
@@ -410,6 +433,7 @@
 			files = (
 				50868B64205C062600C2F881 /* TestViewController.m in Sources */,
 				5097342D204268CC00631D53 /* JHLocalDataManager.m in Sources */,
+				50F2A6AD205E448B00FCC571 /* ListViewController.m in Sources */,
 				50868B6B205C06DE00C2F881 /* TestThreadViewController.m in Sources */,
 				50C15DE820120EB600B36882 /* main.m in Sources */,
 				50868B63205C062600C2F881 /* TextModel.m in Sources */,
@@ -529,7 +553,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5RQ3NFZ9B3;
+				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = DT/common/Define/PrefixHeader.h;
 				INFOPLIST_FILE = DT/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -546,7 +573,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5RQ3NFZ9B3;
+				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = DT/common/Define/PrefixHeader.h;
 				INFOPLIST_FILE = DT/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

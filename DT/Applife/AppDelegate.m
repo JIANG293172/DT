@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "TestViewController.h"
-#import "TestThreadViewController.h"
+#import "ListViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -19,8 +18,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self. window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    TestThreadViewController *controller = [TestThreadViewController new];
-    self.window.rootViewController = controller;
+    ListViewController *controller = [ListViewController new];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
+    self.window.rootViewController = navi;
     [self.window makeKeyAndVisible];
     return YES;
 }

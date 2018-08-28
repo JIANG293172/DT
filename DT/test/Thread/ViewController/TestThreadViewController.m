@@ -8,33 +8,112 @@
 
 #import "TestThreadViewController.h"
 #import "YSCOperation.h"
-@interface TestThreadViewController ()
+#import "Masonry.h"
+@interface TestThreadViewController ()<UITableViewDelegate, UITableViewDataSource>
 /* 剩余火车票数 */
 @property (nonatomic, assign) int ticketSurplusCount;
 @property (readwrite, nonatomic, strong) NSLock *lock;
+@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation TestThreadViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self tableView];
     /**
      * 同步串行：不开启线程
      * 同步并行：不开启线程
-     * 异步串行：开启线程
-     * 异步并行：最多开启一个线程
-     - 同步：不开启线程，并将添加信号锁。同步会阻塞当前线程
-     - 异步：开启线程
-     - 串行：任务一个一个执行
-     - 并行：任务不用一个一个执行
+     * 异步串行：最多开启一个线程，任务一个一个执行
+     * 异步并行：可开启线程，下任务并行执行
+     * 同步：不开启线程，阻塞当前线程
+     * 异步：能够开启线程
      */
-    
-    [self performSelector:@selector(test7) withObject:nil];
+}
 
-    /** 并行队列 */
-//    dispatch_queue_t queueConcurrent = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
+- (void)test11{
+    /** 同步：不开启线程，同步会阻塞当前线程 */
+    dispatch_queue_t queueSerialOne = dispatch_queue_create("queueSerial", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queueSerialTwo = dispatch_queue_create("queueSerial", DISPATCH_QUEUE_CONCURRENT);
+    NSLog(@"%@ === 1", [NSThread currentThread]);
+    dispatch_sync(queueSerialOne, ^{
+        NSLog(@"%@ === 2", [NSThread currentThread]);
 
+        dispatch_sync(queueSerialTwo, ^{
+            NSLog(@"%@ === 3", [NSThread currentThread]);
+
+            dispatch_sync(queueSerialTwo, ^{
+                NSLog(@"%@ === 4", [NSThread currentThread]);
+
+            });
+            NSLog(@"%@ === 5", [NSThread currentThread]);
+        });
+        NSLog(@"%@ === 6", [NSThread currentThread]);
+
+        dispatch_sync(queueSerialTwo, ^{
+            NSLog(@"%@ === 7", [NSThread currentThread]);
+        });
+        NSLog(@"%@ === 8", [NSThread currentThread]);
+
+    });
+    NSLog(@"%@ === 9", [NSThread currentThread]);
+
+}
+
+- (void)test22{
+    /** 异步串行：最多开启一个线程 ，任务一个一个  */
+    dispatch_queue_t queueSerialOne = dispatch_queue_create("queueSerial", DISPATCH_QUEUE_SERIAL);
+    NSLog(@"%@ === 1", [NSThread currentThread]);
+    dispatch_async(queueSerialOne, ^{
+        NSLog(@"%@ === 2", [NSThread currentThread]);
+        
+        dispatch_async(queueSerialOne, ^{
+            NSLog(@"%@ === 3", [NSThread currentThread]);
+            
+            dispatch_async(queueSerialOne, ^{
+                NSLog(@"%@ === 4", [NSThread currentThread]);
+                
+            });
+            NSLog(@"%@ === 5", [NSThread currentThread]);
+        });
+        NSLog(@"%@ === 6", [NSThread currentThread]);
+        
+        dispatch_async(queueSerialOne, ^{
+            
+            NSLog(@"%@ === 7", [NSThread currentThread]);
+        });
+        NSLog(@"%@ === 8", [NSThread currentThread]);
+        
+    });
+    NSLog(@"%@ === 9", [NSThread currentThread]);
+}
+
+- (void)test33{
+    /** 异步并行：任务并行执行  */
+    dispatch_queue_t queueSerialTwo = dispatch_queue_create("queueSerial", DISPATCH_QUEUE_CONCURRENT);
+    NSLog(@"%@ === 1", [NSThread currentThread]);
+    dispatch_async(queueSerialTwo, ^{
+        NSLog(@"%@ === 2", [NSThread currentThread]);
+        
+        dispatch_async(queueSerialTwo, ^{
+            NSLog(@"%@ === 3", [NSThread currentThread]);
+            
+            dispatch_async(queueSerialTwo, ^{
+                NSLog(@"%@ === 4", [NSThread currentThread]);
+                
+            });
+            NSLog(@"%@ === 5", [NSThread currentThread]);
+        });
+        NSLog(@"%@ === 6", [NSThread currentThread]);
+        
+        dispatch_async(queueSerialTwo, ^{
+            NSLog(@"%@ === 7", [NSThread currentThread]);
+        });
+        NSLog(@"%@ === 8", [NSThread currentThread]);
+        
+    });
+    NSLog(@"%@ === 9", [NSThread currentThread]);
 }
 
 /**
@@ -70,6 +149,8 @@
         });
     });
 }
+
+
 /**
  延迟执行
  默认方式是异步，使用主要队列会在主线程中执行
@@ -78,8 +159,11 @@
 - (void)test4{
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC));
     dispatch_queue_t queueSerialOne = dispatch_queue_create("queueSerial", DISPATCH_QUEUE_SERIAL);
+    NSLog(@"%@ === 1", [NSThread currentThread]);
     dispatch_after(time, queueSerialOne, ^{
+        NSLog(@"%@ === 2", [NSThread currentThread]);
     });
+    NSLog(@"%@ === 3", [NSThread currentThread]);
 }
 
 /**
@@ -90,18 +174,27 @@
 - (void)test5{
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
+    NSLog(@"%@ === 1", [NSThread currentThread]);
     dispatch_group_async(group, queue, ^{
+        NSLog(@"%@ === 2", [NSThread currentThread]);
     });
+    NSLog(@"%@ === 3", [NSThread currentThread]);
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    NSLog(@"%@ === 4", [NSThread currentThread]);
 }
 
 - (void)test6{
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    NSLog(@"%@ === 1", [NSThread currentThread]);
     dispatch_group_async(group, queue, ^{
+        NSLog(@"%@ === 2", [NSThread currentThread]);
     });
+    NSLog(@"%@ === 4", [NSThread currentThread]);
     dispatch_group_notify(group, queue, ^{
+        NSLog(@"%@ === 5", [NSThread currentThread]);
     });
+    NSLog(@"%@ === 6", [NSThread currentThread]);
 }
 /**
  多次执行
@@ -109,15 +202,19 @@
  */
 - (void)test7{
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    NSLog(@"%@ === 1", [NSThread currentThread]);
     dispatch_apply(10, queue, ^(size_t i) {
+        NSLog(@"%@ === 2", [NSThread currentThread]);
     });
+    NSLog(@"%@ === 3", [NSThread currentThread]);
 }
 /**
  队列特有数据
+ 如果将多个串行的queue使用dispatch_set_target_queue指定到了同一目标，那么着多个串行queue在目标queue上就是同步执行的，不再是并行执行。
  */
 - (void)test8{
-    dispatch_queue_t queueA = dispatch_queue_create("queueA", NULL);
-    dispatch_queue_t queueB = dispatch_queue_create("queueB", NULL);
+    dispatch_queue_t queueA = dispatch_queue_create("queueA", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queueB = dispatch_queue_create("queueB", DISPATCH_QUEUE_SERIAL);
     dispatch_set_target_queue(queueB, queueA);
     
     static int kQeueueSpecific;
@@ -129,7 +226,8 @@
         };
         CFStringRef retrievedValue = dispatch_get_specific(&kQeueueSpecific);
         if (retrievedValue) {
-            block();
+//            block();
+            dispatch_sync(queueA, block);
         }else{
             dispatch_sync(queueA, block);
         }
@@ -358,7 +456,7 @@
     // 2.设置最大并发操作数
     queue.maxConcurrentOperationCount = 1; // 串行队列
     //    queue.maxConcurrentOperationCount = 2; // 并发队列
-    //    queue.maxConcurrentOperationCount = 8; // 并发队列
+        queue.maxConcurrentOperationCount = 8; // 并发队列
     
     // 3.添加操作
     [queue addOperationWithBlock:^{
@@ -399,7 +497,7 @@
         
         for (int i = 0; i < 2; i++) {
             NSLog(@"1-----%@", [NSThread currentThread]);
-            [NSThread sleepForTimeInterval:2];
+//            [NSThread sleepForTimeInterval:2];
         }
     }];
     [op1 setQueuePriority:(NSOperationQueuePriorityVeryLow)];
@@ -408,7 +506,7 @@
         
         for (int i = 0; i < 2; i++) {
             NSLog(@"2-----%@", [NSThread currentThread]);
-            [NSThread sleepForTimeInterval:2];
+//            [NSThread sleepForTimeInterval:2];
         }
     }];
     
@@ -441,7 +539,7 @@
     }];
     
     // 3.添加依赖
-    [op2 addDependency:op1];    // 让op2 依赖于 op1，则先执行op1，在执行op2
+    [op1 addDependency:op2];    // 让op1 依赖于 op2，则先执行op2，在执行op1
     
     // 4.添加操作到队列中
     [queue addOperation:op1];
@@ -613,6 +711,199 @@
     }
 }
 
+
+
+- (void)initSyncBarrier
+{
+    //1 创建并发队列
+    dispatch_queue_t concurrentQueue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
+    
+    //2 向队列中添加任务
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"Task 1,%@",[NSThread currentThread]);
+    });
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"Task 2,%@",[NSThread currentThread]);
+    });
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"Task 3,%@",[NSThread currentThread]);
+    });
+    dispatch_barrier_sync(concurrentQueue, ^{
+        [NSThread sleepForTimeInterval:1.0];
+        NSLog(@"barrier");
+    });
+    NSLog(@"aa, %@", [NSThread currentThread]);
+    
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"Task 4,%@",[NSThread currentThread]);
+    });
+    NSLog(@"bb, %@", [NSThread currentThread]);
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"Task 5,%@",[NSThread currentThread]);
+    });
+}
+
+
+- (void)initAsyncBarrier
+{
+    //1 创建并发队列
+    dispatch_queue_t concurrentQueue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
+    
+    //2 向队列中添加任务
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"Task 1,%@",[NSThread currentThread]);
+    });
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"Task 2,%@",[NSThread currentThread]);
+    });
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"Task 3,%@",[NSThread currentThread]);
+    });
+    dispatch_barrier_async(concurrentQueue, ^{
+        [NSThread sleepForTimeInterval:1.0];
+        NSLog(@"barrier");
+    });
+    NSLog(@"aa, %@", [NSThread currentThread]);
+    
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"Task 4,%@",[NSThread currentThread]);
+    });
+    NSLog(@"bb, %@", [NSThread currentThread]);
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"Task 5,%@",[NSThread currentThread]);
+    });
+}
+
+
+
+
+
+
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    cell.textLabel.text = self.dataArray[indexPath.row];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (indexPath.row) {
+        case 0:
+            [self test11];
+            break;
+        case 1:
+            [self test22];
+            break;
+        case 2:
+            [self test33];
+            break;
+        case 3:
+            [self test1];
+            break;
+        case 4:
+            [self test2];
+            break;
+        case 5:
+            [self test3];
+            break;
+        case 6:
+            [self test4];
+            break;
+        case 7:
+            [self test5];
+            break;
+        case 8:
+            [self test6];
+            break;
+        case 9:
+            [self test7];
+            break;
+        case 10:
+            [self test8];
+            break;
+        case 11:
+            [self useInvocationOperation];
+            break;
+        case 12:
+            [self useBlockOperation];
+            break;
+        case 13:
+            [self useBlockOperationAddExecutionBlock];
+            break;
+        case 14:
+            [self useCustomOperation];
+            break;
+        case 15:
+            [self addOperationToQueue];
+            break;
+        case 16:
+            [self addOperationWithBlockToQueue];
+            break;
+        case 17:
+            [self setMaxConcurrentOperationCount];
+            break;
+        case 18:
+            [self setQueuePriority];
+            break;
+        case 19:
+            [self addDependency];
+            break;
+        case 20:
+            [self communication];
+            break;
+        case 21:
+            [self completionBlock];
+            break;
+        case 22:
+            [self initTicketStatusNotSave];
+            break;
+        case 23:
+            [self initTicketStatusSave];
+            break;
+        case 24:
+            [self initSyncBarrier];
+            break;
+        case 25:
+            [self initAsyncBarrier];
+            break;
+        default:
+            break;
+    }
+}
+
+- (NSArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = @[@"test11", @"test22", @"test33", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6", @"test7", @"test8", @"useInvocationOperation", @"useBlockOperation", @"useBlockOperationAddExecutionBlock", @"useCustomOperation", @"addOperationToQueue", @"addOperationWithBlockToQueue", @"setMaxConcurrentOperationCount", @"setQueuePriority", @"addDependency", @"communication", @"completionBlock", @"initTicketStatusNotSave", @"initTicketStatusSave", @"initSyncBarrier", @"initAsyncBarrier"];
+
+    }
+    return _dataArray;
+}
+
+-(UITableView *)tableView {
+    if (!_tableView) {
+        self.view.backgroundColor = [UIColor whiteColor];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [self.view addSubview:_tableView];
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.bottom.offset = 0;
+        }];
+    }
+    return _tableView;
+}
+
+
 /**
  * 任务1
  */
@@ -638,5 +929,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 @end

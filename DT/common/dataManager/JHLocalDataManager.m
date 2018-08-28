@@ -146,9 +146,11 @@
         return;
     }
     NSString *path = [self getDefaultPathWithDataType:type withKey:key];
-    BOOL isSucess;
-    isSucess = [NSKeyedArchiver archiveRootObject:object toFile:path];
-    complementBack(isSucess);
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        BOOL isSucess;
+        isSucess = [NSKeyedArchiver archiveRootObject:object toFile:path];
+        complementBack(isSucess);
+    });
 }
 
 - (id)getObjectWithDataType:(JHLocalDataType)type andKey:(NSString *)key{

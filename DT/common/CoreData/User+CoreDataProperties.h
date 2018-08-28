@@ -1,0 +1,17 @@
+//
+//  User+CoreDataProperties.h
+//  DT
+//
+//  Created by tao on 2018/8/9.
+//  Copyright © 2018年 tao. All rights reserved.
+//
+
+#import "User.h"
+
+@interface User (CoreDataProperties)
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *age;
+@property (nonatomic, strong) NSString *sectionName;
+
+@end
